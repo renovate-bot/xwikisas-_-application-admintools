@@ -135,7 +135,7 @@ class DefaultAdminToolsResourceTest
     }
 
     @BeforeEach
-    void setUp() throws AccessDeniedException
+    void setUp()
     {
         when(contextProvider.get()).thenReturn(xWikiContext);
         when(xWikiContext.getUserReference()).thenReturn(user);
@@ -169,8 +169,8 @@ class DefaultAdminToolsResourceTest
             this.defaultAdminToolsResource.getFile("resource_hint");
         });
         assertEquals(500, exception.getResponse().getStatus());
-        assertEquals("Failed to get data from DataResource [resource_hint]. Root cause: [NullPointerException: ]",
-            logCapture.getMessage(0));
+        assertEquals("Failed to get data from DataResource [resource_hint]. Root cause: "
+            + "[NullPointerException: Cannot read the array length because \"buf\" is null]", logCapture.getMessage(0));
     }
 
     @Test
